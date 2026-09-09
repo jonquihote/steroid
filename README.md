@@ -1,38 +1,73 @@
-# Steroid
+# Laravel Package Skeleton
 
-A curated Laravel metapackage for essential application packages.
+A starter template for building beautiful Laravel packages.
 
-## Installation
+## Introduction
 
-Install the metapackage via Composer:
+This skeleton provides everything you need to start building a Laravel package. It comes pre-configured with a service provider, testing via Pest, static analysis via Larastan, code formatting via Pint, and a workbench application for end-to-end development — all wired up and ready to go.
+
+An interactive configuration script personalizes the skeleton for your package during `composer install`, setting up your namespace, service provider, and only the features you need.
+
+## Getting Started
+
+Press the **Use this template** button at the top of this repository to create your package, or clone it directly:
 
 ```bash
-composer require jonquihote/steroid
+git clone https://github.com/laravel/package-skeleton.git my-package
+cd my-package
 ```
 
-## What It Does
+Then, install your dependencies. The interactive configuration script will run automatically:
 
-Steroid is a [Composer metapackage](https://getcomposer.org/doc/04-schema.md#type). It installs **no source files of its own** — requiring it simply pulls in a curated set of essential Laravel packages as dependencies, so a fresh application can be bootstrapped with a single `composer require`.
+```bash
+composer install
+```
 
-## Included Packages
+If you prefer to configure manually, install without scripts and run the configuration separately:
 
-Requiring `jonquihote/steroid` installs:
+```bash
+composer install --no-scripts
+php configure.php
+```
 
-- [robertboes/inertia-breadcrumbs](https://github.com/robertboes/inertia-breadcrumbs) — Breadcrumbs for Inertia.js applications
-- [saloonphp/saloon](https://github.com/saloonphp/saloon) — Fluent API integrator / HTTP client abstraction
-- [saloonphp/laravel-plugin](https://github.com/saloonphp/laravel-plugin) — Laravel integration for Saloon
-- [spatie/laravel-activitylog](https://github.com/spatie/laravel-activitylog) — Log activity in your Laravel app
-- [spatie/laravel-data](https://github.com/spatie/laravel-data) — Powerful data objects for Laravel
-- [spatie/laravel-medialibrary](https://github.com/spatie/laravel-medialibrary) — Associate files with your models
-- [spatie/laravel-model-states](https://github.com/spatie/laravel-model-states) — State machine support for Eloquent models
-- [spatie/laravel-permission](https://github.com/spatie/laravel-permission) — Roles and permissions for Laravel
-- [spatie/laravel-query-builder](https://github.com/spatie/laravel-query-builder) — Build Eloquent queries from API requests
-- [spatie/laravel-sluggable](https://github.com/spatie/laravel-sluggable) — Generate slugs for your Eloquent models
-- [spatie/laravel-typescript-transformer](https://github.com/spatie/laravel-typescript-transformer) — Transform PHP structures to TypeScript
-- [diglactic/laravel-breadcrumbs](https://github.com/diglactic/laravel-breadcrumbs) — Simple breadcrumb navigation
+Once configured, verify everything is working:
 
-After installation, follow each package's own documentation to publish its config and migrations as needed.
+```bash
+composer test
+```
 
-## License
+You may also boot the included workbench application to test your package end-to-end:
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+```bash
+composer serve
+```
+
+The workbench app will be available at `http://localhost:8000`.
+
+## Non-Interactive Configuration
+
+The configuration script supports non-interactive mode for CI or scripted setups. Pass `--no-interaction` along with any metadata options you'd like to prefill:
+
+```bash
+php configure.php --no-interaction --config --routes
+```
+
+Non-interactive mode also activates automatically when the `COMPOSER_NO_INTERACTION=1` environment variable is set, when an AI agent is detected, or when standard input is not an interactive terminal.
+
+Omitting feature flags includes every package feature; passing specific flags includes only those features. Tools work the same way: omitting tool flags such as `--dependabot` or `--changelog` includes every tool, while passing specific flags includes only those tools.
+
+Since the default package description is empty, passing `--package-description` is recommended so the generated `composer.json` is ready to publish.
+
+Non-interactive runs print a single line of JSON describing the result, including the resolved metadata, selected features and tools, and any manual follow-up steps. Invalid metadata options fail with a JSON error before any files are changed.
+
+During configuration, `README_PACKAGE.md` and `AGENTS_PACKAGE.md` are customized and moved to `README.md` and `AGENTS.md`, replacing the skeleton files. The script also links `CLAUDE.md` to `AGENTS.md` and `.claude` to `.agents` so both agent formats share the same guidance.
+
+## After Setup
+
+A few GitHub settings need your attention after creating your package repository:
+
+- Review Dependabot pull requests before merging — this skeleton does not include an automatic merge workflow.
+- Create release-note labels: `breaking`, `enhancement`, `bug`, `documentation`, `dependencies`, `maintenance`, `skip-changelog`, and `duplicate`.
+- Review branch protection for `main` — changelog automation requires GitHub Actions to commit to `CHANGELOG.md` after a release.
+
+No additional repository secrets are required; the included workflows use GitHub's built-in `GITHUB_TOKEN`.
