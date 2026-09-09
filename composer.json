@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
     "name": ":vendor_slug/:package_slug",
-    "description": "An umbrella/meta-package that bundles a curated set of Laravel dependencies.",
-    "type": "metapackage",
+    "description": "A Laravel umbrella library that bundles a curated set of dependencies.",
+    "type": "library",
     "keywords": [
         "laravel",
         "meta-package",

@@ -1,0 +1,163 @@
+{
+    "$schema": "https://raw.githubusercontent.com/:vendor_slug/:package_slug/main/resources/boost/.mirror-manifest.schema.json",
+    "schema": 1,
+    "generated": "2026-09-09",
+    "sources": [
+        {
+            "composer_package": "robertboes/inertia-breadcrumbs",
+            "declared_constraint": "^1.0",
+            "resolved_tag": "1.2.0",
+            "resolved_commit": "b8a1219a5dda81df4b0678e6e1b3e7beba445043",
+            "repository_url": "https://github.com/RobertBoes/inertia-breadcrumbs",
+            "license": "MIT",
+            "license_url": "https://github.com/RobertBoes/inertia-breadcrumbs/blob/1.2.0/LICENSE.md",
+            "copyright": "Copyright (c) Robert Boes",
+            "skills": [
+                {
+                    "name": "inertia-breadcrumbs",
+                    "directory": "resources/boost/skills/inertia-breadcrumbs",
+                    "mirrored_files": [
+                        "resources/boost/skills/inertia-breadcrumbs/SKILL.md",
+                        "resources/boost/skills/inertia-breadcrumbs/references/configuration.md",
+                        "resources/boost/skills/inertia-breadcrumbs/references/defining-breadcrumbs.md",
+                        "resources/boost/skills/inertia-breadcrumbs/references/rendering-breadcrumbs.md"
+                    ]
+                }
+            ],
+            "guidelines": [
+                {
+                    "source_file": "resources/boost/guidelines/core.blade.php",
+                    "mirrored_as": "resources/boost/guidelines/robertboes-inertia-breadcrumbs.core.blade.php"
+                }
+            ]
+        },
+        {
+            "composer_package": "saloonphp/laravel-plugin",
+            "declared_constraint": "^5.0",
+            "resolved_tag": "v5.0.0",
+            "resolved_commit": "eca50ffd27423a14163d517f693a24d36cfc224b",
+            "repository_url": "https://github.com/saloonphp/laravel-plugin",
+            "license": "MIT",
+            "license_url": "https://github.com/saloonphp/laravel-plugin/blob/v5.0.0/LICENSE",
+            "copyright": "Copyright (c) 2023 Sam Carré",
+            "skills": [
+                {
+                    "name": "saloon-development",
+                    "directory": "resources/boost/skills/saloon-development",
+                    "mirrored_files": [
+                        "resources/boost/skills/saloon-development/SKILL.md"
+                    ]
+                }
+            ],
+            "guidelines": [
+                {
+                    "source_file": "resources/boost/guidelines/core.blade.php",
+                    "mirrored_as": "resources/boost/guidelines/saloonphp-laravel-plugin.core.blade.php"
+                }
+            ]
+        },
+        {
+            "composer_package": "spatie/laravel-activitylog",
+            "declared_constraint": "^5.0",
+            "resolved_tag": "5.1.1",
+            "resolved_commit": "8ce56d3b9d72f4e4551f4449d236a5ed06e71667",
+            "repository_url": "https://github.com/spatie/laravel-activitylog",
+            "license": "MIT",
+            "license_url": "https://github.com/spatie/laravel-activitylog/blob/5.1.1/LICENSE.md",
+            "copyright": "Copyright (c) Spatie bvba <info@spatie.be>",
+            "skills": [],
+            "guidelines": [
+                {
+                    "source_file": "resources/boost/guidelines/core.blade.php",
+                    "mirrored_as": "resources/boost/guidelines/spatie-laravel-activitylog.core.blade.php"
+                }
+            ]
+        },
+        {
+            "composer_package": "spatie/laravel-medialibrary",
+            "declared_constraint": "^11.0",
+            "resolved_tag": "11.23.7",
+            "resolved_commit": "94b11766ea5e10b1e2a88159b24937eae89a5d5f",
+            "repository_url": "https://github.com/spatie/laravel-medialibrary",
+            "license": "MIT",
+            "license_url": "https://github.com/spatie/laravel-medialibrary/blob/11.23.7/LICENSE.md",
+            "copyright": "Copyright (c) Spatie bvba <info@spatie.be>",
+            "skills": [
+                {
+                    "name": "medialibrary-development",
+                    "directory": "resources/boost/skills/medialibrary-development",
+                    "mirrored_files": [
+                        "resources/boost/skills/medialibrary-development/SKILL.md",
+                        "resources/boost/skills/medialibrary-development/references/medialibrary-guide.md"
+                    ]
+                }
+            ],
+            "guidelines": [
+                {
+                    "source_file": "resources/boost/guidelines/core.blade.php",
+                    "mirrored_as": "resources/boost/guidelines/spatie-laravel-medialibrary.core.blade.php"
+                }
+            ]
+        },
+        {
+            "composer_package": "spatie/laravel-permission",
+            "declared_constraint": "^8.0",
+            "resolved_tag": "8.3.0",
+            "resolved_commit": "60e8ed5b2fbf043c2264433fc2680c76b8b66aa6",
+            "repository_url": "https://github.com/spatie/laravel-permission",
+            "license": "MIT",
+            "license_url": "https://github.com/spatie/laravel-permission/blob/8.3.0/LICENSE.md",
+            "copyright": "Copyright (c) Spatie bvba <info@spatie.be>",
+            "skills": [
+                {
+                    "name": "laravel-permission-development",
+                    "directory": "resources/boost/skills/laravel-permission-development",
+                    "mirrored_files": [
+                        "resources/boost/skills/laravel-permission-development/SKILL.md"
+                    ]
+                }
+            ],
+            "guidelines": []
+        },
+        {
+            "composer_package": "spatie/laravel-query-builder",
+            "declared_constraint": "^7.2",
+            "resolved_tag": "7.3.5",
+            "resolved_commit": "595523f861caf751ebd29fc377ddc525cd2e3fb1",
+            "repository_url": "https://github.com/spatie/laravel-query-builder",
+            "license": "MIT",
+            "license_url": "https://github.com/spatie/laravel-query-builder/blob/7.3.5/LICENSE.md",
+            "copyright": "Copyright (c) Spatie bvba <info@spatie.be>",
+            "skills": [
+                {
+                    "name": "laravel-query-builder",
+                    "directory": "resources/boost/skills/laravel-query-builder",
+                    "mirrored_files": [
+                        "resources/boost/skills/laravel-query-builder/SKILL.md"
+                    ]
+                }
+            ],
+            "guidelines": []
+        },
+        {
+            "composer_package": "spatie/laravel-sluggable",
+            "declared_constraint": "^4.0",
+            "resolved_tag": "4.0.3",
+            "resolved_commit": "572933c61b70103be4b95fe7674070bb60243254",
+            "repository_url": "https://github.com/spatie/laravel-sluggable",
+            "license": "MIT",
+            "license_url": "https://github.com/spatie/laravel-sluggable/blob/4.0.3/LICENSE.md",
+            "copyright": "Copyright (c) Spatie bvba <info@spatie.be>",
+            "skills": [
+                {
+                    "name": "sluggable-development",
+                    "directory": "resources/boost/skills/sluggable-development",
+                    "mirrored_files": [
+                        "resources/boost/skills/sluggable-development/SKILL.md"
+                    ]
+                }
+            ],
+            "guidelines": []
+        }
+    ]
+}

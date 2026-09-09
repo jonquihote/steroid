@@ -1,6 +1,6 @@
 # :package_name
 
-A Composer meta-package that bundles a curated set of Laravel dependencies into a single requirement.
+A Composer library that bundles a curated set of Laravel dependencies into a single requirement.
 
 This package contains no code of its own. Requiring it pulls in a consistent set of upstream packages so your application can depend on one requirement instead of many.
 
@@ -46,6 +46,30 @@ Refer to the [Inertia Breadcrumbs documentation](https://github.com/robertboes/i
 | [spatie/laravel-sluggable](https://github.com/spatie/laravel-sluggable) | `^4.0` | Generate slugs for Eloquent models. |
 | [spatie/laravel-typescript-transformer](https://github.com/spatie/laravel-typescript-transformer) | `^3.0` | Transform PHP types to TypeScript. |
 | [diglactic/laravel-breadcrumbs](https://github.com/diglactic/laravel-breadcrumbs) | `^10.1` | A simple breadcrumb package for Laravel. |
+
+## Laravel Boost
+
+This package mirrors [Laravel Boost](https://github.com/laravel/boost) skills and guidelines from a subset of its bundled packages. When this library is a direct dependency of your Laravel application, Boost's normal package discovery picks them up automatically.
+
+The following six skills are mirrored under `resources/boost/skills/`:
+
+- `inertia-breadcrumbs` (from `robertboes/inertia-breadcrumbs`)
+- `saloon-development` (from `saloonphp/laravel-plugin`)
+- `medialibrary-development` (from `spatie/laravel-medialibrary`)
+- `laravel-permission-development` (from `spatie/laravel-permission`)
+- `laravel-query-builder` (from `spatie/laravel-query-builder`)
+- `sluggable-development` (from `spatie/laravel-sluggable`)
+
+Four guideline files are mirrored under `resources/boost/guidelines/`:
+
+- `robertboes-inertia-breadcrumbs.core.blade.php`
+- `saloonphp-laravel-plugin.core.blade.php`
+- `spatie-laravel-activitylog.core.blade.php`
+- `spatie-laravel-medialibrary.core.blade.php`
+
+The mirror is version-pinned: each mirrored file is copied from a specific upstream release tag and records its provenance (package, tag, source URL) in an HTML comment at the top of the file. The [`.mirror-manifest.json`](resources/boost/.mirror-manifest.json) records the exact tags and commit SHAs used, and [`MIRRORED-LICENSES.md`](resources/boost/MIRRORED-LICENSES.md) preserves the upstream MIT license texts for attribution.
+
+Bundled packages that do not ship their own Boost skills or guidelines do not get synthetic ones here; only genuine upstream Boost assets are mirrored.
 
 ## Package-Specific Setup
 
