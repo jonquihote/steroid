@@ -1,9 +1,3 @@
-<!--
-  Mirrored from upstream Laravel Boost assets.
-  Upstream package: robertboes/inertia-breadcrumbs
-  Upstream tag: 1.2.0
-  Source URL: https://raw.githubusercontent.com/RobertBoes/inertia-breadcrumbs/1.2.0/resources/boost/skills/inertia-breadcrumbs/references/defining-breadcrumbs.md
--->
 # Defining breadcrumbs
 
 How you define breadcrumbs depends on the configured collector (see Step 1 of the skill). This package only *collects and shares* — for the three third-party collectors, breadcrumbs are defined in that package's own syntax.

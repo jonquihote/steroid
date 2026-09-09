@@ -22,6 +22,13 @@ This repository is a generic Composer-only Laravel umbrella library. It contains
 - Whenever a bundled Composer constraint changes in a way that alters the mirrored upstream tag, regenerate `resources/boost/.mirror-manifest.json` (schema 1; per-source package, constraint, resolved tag, resolved commit SHA, repository URL, license, license URL, copyright, mirrored skill directories/names/files, guideline sources) and `resources/boost/MIRRORED-LICENSES.md` (full upstream MIT license texts and attribution) to stay in sync.
 - `resources/` must be retained in package archives; do not add an `export-ignore` rule for `resources/` or any path beneath it in `.gitattributes`.
 
+## Mirror Audit
+
+- `.github/scripts/verify-boost-mirror.php` is the Boost mirror verifier; `.github/workflows/boost-mirror-audit.yml` runs it in CI. The verifier is plain PHP 8.5, has no external dependencies, and lives under `.github/` so it is excluded from package archives.
+- The workflow triggers on `pull_request` and on `push` when `composer.json`, `.gitattributes`, `resources/boost/**`, or the workflow/script change, on a daily cron schedule, and on `workflow_dispatch`. It resolves the `require` block in a scratch directory via `composer update --no-install` + `composer install --no-autoloader`, then runs the verifier against the repository's `resources/boost/` tree.
+- The verifier enforces manifest shape (every source has non-empty `composer_package`, `declared_constraint`, `resolved_tag`, 40-hex `resolved_commit`, an HTTPS GitHub `repository_url`, `license: MIT`, `license_url`, `copyright`, and `skills`/`guidelines` arrays with normalized relative paths), upstream-vs-manifest inventory parity, mirrored-file content parity (SKILL/guidelines strip the provenance HTML comment; references are byte-for-byte exact), provenance-comment consistency with the manifest, copyright/license-URL presence in `MIRRORED-LICENSES.md`, no orphaned local mirror files, no duplicate YAML `name:` across upstream SKILL.md files, and no `export-ignore` rule in `.gitattributes` that would exclude `resources/`.
+- Adding a new direct `require` that ships `resources/boost/**` assets, bumping a constraint to a tag whose Boost assets moved, or editing mirrored files must update the mirror, `.mirror-manifest.json`, and `MIRRORED-LICENSES.md` in the same PR — CI fails otherwise.
+
 ## Documentation
 
 - `README.md` is the package-facing documentation. Keep the bundled-packages table, constraints, and upstream links in sync with `composer.json` whenever dependencies change.

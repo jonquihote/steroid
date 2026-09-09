@@ -1,9 +1,3 @@
-<!--
-  Mirrored from upstream Laravel Boost assets.
-  Upstream package: spatie/laravel-medialibrary
-  Upstream tag: 11.23.7
-  Source URL: https://raw.githubusercontent.com/spatie/laravel-medialibrary/11.23.7/resources/boost/skills/medialibrary-development/references/medialibrary-guide.md
--->
 # Laravel Media Library Reference
 
 Complete reference for `spatie/laravel-medialibrary`. Full documentation: https://spatie.be/docs/laravel-medialibrary

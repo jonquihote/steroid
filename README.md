@@ -67,9 +67,27 @@ Four guideline files are mirrored under `resources/boost/guidelines/`:
 - `spatie-laravel-activitylog.core.blade.php`
 - `spatie-laravel-medialibrary.core.blade.php`
 
-The mirror is version-pinned: each mirrored file is copied from a specific upstream release tag and records its provenance (package, tag, source URL) in an HTML comment at the top of the file. The [`.mirror-manifest.json`](resources/boost/.mirror-manifest.json) records the exact tags and commit SHAs used, and [`MIRRORED-LICENSES.md`](resources/boost/MIRRORED-LICENSES.md) preserves the upstream MIT license texts for attribution.
+The mirror is version-pinned: each mirrored file is copied from a specific upstream release tag. Mirrored `SKILL.md` and guideline files carry a leading HTML provenance comment recording the upstream package, tag, and source URL; mirrored reference files are exact upstream copies and carry no comment. The [`.mirror-manifest.json`](resources/boost/.mirror-manifest.json) records the exact tags and commit SHAs used, and [`MIRRORED-LICENSES.md`](resources/boost/MIRRORED-LICENSES.md) preserves the upstream MIT license texts for attribution.
 
 Bundled packages that do not ship their own Boost skills or guidelines do not get synthetic ones here; only genuine upstream Boost assets are mirrored.
+
+### Mirror Audit
+
+A CI workflow ([`.github/workflows/boost-mirror-audit.yml`](.github/workflows/boost-mirror-audit.yml)) runs [`.github/scripts/verify-boost-mirror.php`](.github/scripts/verify-boost-mirror.php) to prove the mirror stays in sync with what this package requires. It fails unless:
+
+- Every direct Composer `require` whose installed tree contains `resources/boost/**` files has a corresponding `sources[]` entry in [`.mirror-manifest.json`](resources/boost/.mirror-manifest.json).
+- Each manifest source is a direct `require` whose `declared_constraint` exactly matches `composer.json`, whose `resolved_tag` exactly matches the version pinned in `composer.lock`, whose lock entry is an immutable release tag (no `dev-*` / `*-dev` aliases), and whose `resolved_commit` equals the lockfile's `source.reference`.
+- The upstream `resources/boost/**` inventory matches the manifest's `skills[].mirrored_files` and `guidelines[].source_file` entries (new or removed upstream files are errors).
+- Every mirrored file exists; `SKILL.md` and guideline copies match upstream content byte-for-byte after stripping the leading provenance HTML comment; reference files match upstream exactly and carry no comment.
+- Mirrored `SKILL.md` and guideline provenance comments record the manifest's package, resolved tag, and expected raw GitHub source URL.
+- No local file under `resources/boost/skills/` or `resources/boost/guidelines/` is orphaned; each is uniquely declared as a manifest destination.
+- Upstream `SKILL.md` files have unique YAML `name:` values, and each manifest `skills[].name` matches its upstream `SKILL.md`.
+- [`MIRRORED-LICENSES.md`](resources/boost/MIRRORED-LICENSES.md) exists and contains every manifest source's copyright string and license URL.
+- `.gitattributes` does not mark `resources/` or any of its children as `export-ignore`, so mirrored assets ship in package archives.
+
+The workflow runs on `pull_request` and on `push` when `composer.json`, `.gitattributes`, `resources/boost/**`, or the workflow/script change, on a daily cron schedule, and on manual `workflow_dispatch`. It builds a scratch `composer.json`/lock/vendor tree under `/tmp/boost-mirror-audit` (so repository metadata placeholders do not need to be resolved) and invokes the verifier against the repository's `resources/boost/` tree.
+
+When a bundled dependency adds, removes, or modifies its upstream Boost assets — or when `composer.json` adds or drops a Boost-capable direct requirement — update the mirrored files, `.mirror-manifest.json`, and [`MIRRORED-LICENSES.md`](resources/boost/MIRRORED-LICENSES.md) in the same PR.
 
 ## Package-Specific Setup
 

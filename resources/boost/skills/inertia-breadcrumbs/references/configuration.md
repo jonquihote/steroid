@@ -1,9 +1,3 @@
-<!--
-  Mirrored from upstream Laravel Boost assets.
-  Upstream package: robertboes/inertia-breadcrumbs
-  Upstream tag: 1.2.0
-  Source URL: https://raw.githubusercontent.com/RobertBoes/inertia-breadcrumbs/1.2.0/resources/boost/skills/inertia-breadcrumbs/references/configuration.md
--->
 # Configuring & extending
 
 All options live in `config/inertia-breadcrumbs.php` (publish with `php artisan vendor:publish --tag="inertia-breadcrumbs-config"`), except the serializer which is registered in code.

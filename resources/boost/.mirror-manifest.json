@@ -1,5 +1,4 @@
 {
-    "$schema": "https://raw.githubusercontent.com/:vendor_slug/:package_slug/main/resources/boost/.mirror-manifest.schema.json",
     "schema": 1,
     "generated": "2026-09-09",
     "sources": [

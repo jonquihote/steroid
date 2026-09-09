@@ -1,9 +1,3 @@
-<!--
-  Mirrored from upstream Laravel Boost assets.
-  Upstream package: robertboes/inertia-breadcrumbs
-  Upstream tag: 1.2.0
-  Source URL: https://raw.githubusercontent.com/RobertBoes/inertia-breadcrumbs/1.2.0/resources/boost/skills/inertia-breadcrumbs/references/rendering-breadcrumbs.md
--->
 # Rendering breadcrumbs
 
 Breadcrumbs are shared as the `breadcrumbs` Inertia prop (the key is configurable — see `configuration.md`). Render them in a page or layout component.

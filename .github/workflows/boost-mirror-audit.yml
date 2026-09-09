@@ -1,0 +1,72 @@
+name: Boost Mirror Audit
+
+on:
+  pull_request:
+    paths:
+      - composer.json
+      - .gitattributes
+      - 'resources/boost/**'
+      - .github/scripts/verify-boost-mirror.php
+      - .github/workflows/boost-mirror-audit.yml
+  push:
+    paths:
+      - composer.json
+      - .gitattributes
+      - 'resources/boost/**'
+      - .github/scripts/verify-boost-mirror.php
+      - .github/workflows/boost-mirror-audit.yml
+  schedule:
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  boost-mirror-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+        with:
+          php-version: 8.5
+          extensions: mbstring, intl, fileinfo, exif
+          tools: composer:v2
+          coverage: none
+
+      - name: Prepare scratch directory
+        run: mkdir -p /tmp/boost-mirror-audit
+
+      - name: Materialize audit composer.json
+        run: |
+          jq '
+            .name = "acme-mirror/boost-umbrella"
+            | .homepage = "https://github.com/acme-mirror/boost-umbrella"
+            | .authors = [{"name":"Mirror Bot","role":"Developer"}]
+          ' composer.json > /tmp/boost-mirror-audit/composer.json
+
+      - name: Resolve dependencies
+        working-directory: /tmp/boost-mirror-audit
+        run: composer update --no-install --no-autoloader --no-scripts --no-plugins --no-interaction --prefer-dist --prefer-stable
+
+      - name: Install dependencies
+        working-directory: /tmp/boost-mirror-audit
+        run: composer install --no-autoloader --no-scripts --no-plugins --no-interaction --prefer-dist
+
+      - name: Run Boost mirror verifier
+        run: |
+          php "$GITHUB_WORKSPACE/.github/scripts/verify-boost-mirror.php" \
+            --composer-json=/tmp/boost-mirror-audit/composer.json \
+            --composer-lock=/tmp/boost-mirror-audit/composer.lock \
+            --vendor-dir=/tmp/boost-mirror-audit/vendor \
+            --manifest="$GITHUB_WORKSPACE/resources/boost/.mirror-manifest.json" \
+            --mirror-root="$GITHUB_WORKSPACE"
