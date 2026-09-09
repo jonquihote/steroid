@@ -5,7 +5,7 @@ This repository is a Composer metapackage (`jonquihote/steroid`). It ships no so
 ## Conventions
 
 - All package changes are made exclusively in `composer.json`'s `require` section.
-- Keep each requirement pinned to a clear major-version constraint compatible with the supported PHP (`^8.3`) and `illuminate/support` (`^12.0||^13.0`) versions.
+- Keep each requirement pinned to a clear major-version constraint compatible with the supported PHP (`^8.5`) and `illuminate/support` (`^13.0`) versions.
 - When adding, removing, or bumping a required package, update the "Included Packages" list in `README.md` in the same change.
 - Do not add `require-dev`, autoload sections, scripts, source directories, tests, or tooling scaffolding — this package is intentionally a manifest only.
 - Keep `.gitattributes` export-ignore entries limited to repository-only files that actually exist.

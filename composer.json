@@ -11,8 +11,8 @@
     "type": "metapackage",
     "license": "MIT",
     "require": {
-        "php": "^8.3",
-        "illuminate/support": "^12.0||^13.0",
+        "php": "^8.5",
+        "illuminate/support": "^13.0",
         "robertboes/inertia-breadcrumbs": "^1.0",
         "saloonphp/laravel-plugin": "^4.0",
         "saloonphp/saloon": "^4.0",
