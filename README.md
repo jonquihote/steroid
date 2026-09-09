@@ -1,73 +1,70 @@
-# Laravel Package Skeleton
+# :package_name
 
-A starter template for building beautiful Laravel packages.
+A Composer meta-package that bundles a curated set of Laravel dependencies into a single requirement.
 
-## Introduction
+This package contains no code of its own. Requiring it pulls in a consistent set of upstream packages so your application can depend on one requirement instead of many.
 
-This skeleton provides everything you need to start building a Laravel package. It comes pre-configured with a service provider, testing via Pest, static analysis via Larastan, code formatting via Pint, and a workbench application for end-to-end development — all wired up and ready to go.
+## Requirements
 
-An interactive configuration script personalizes the skeleton for your package during `composer install`, setting up your namespace, service provider, and only the features you need.
+- PHP `^8.5`
+- Laravel `^13.0` (via `illuminate/support`)
 
-## Getting Started
+## Installation
 
-Press the **Use this template** button at the top of this repository to create your package, or clone it directly:
-
-```bash
-git clone https://github.com/laravel/package-skeleton.git my-package
-cd my-package
-```
-
-Then, install your dependencies. The interactive configuration script will run automatically:
+Install via Composer:
 
 ```bash
-composer install
+composer require :vendor_slug/:package_slug
 ```
 
-If you prefer to configure manually, install without scripts and run the configuration separately:
+All bundled packages support [Laravel's package auto-discovery](https://laravel.com/docs/packages#package-discovery); their service providers will be registered automatically.
+
+### Inertia Breadcrumbs
+
+[`robertboes/inertia-breadcrumbs`](https://github.com/robertboes/inertia-breadcrumbs) uses [`diglactic/laravel-breadcrumbs`](https://github.com/diglactic/laravel-breadcrumbs) as its default collector. After installation, publish its configuration and select the Diglactic collector so Inertia Breadcrumbs can resolve your application's breadcrumbs:
 
 ```bash
-composer install --no-scripts
-php configure.php
+php artisan vendor:publish --tag=inertia-breadcrumbs-config
 ```
 
-Once configured, verify everything is working:
+Refer to the [Inertia Breadcrumbs documentation](https://github.com/robertboes/inertia-breadcrumbs) and the [Diglactic Laravel Breadcrumbs documentation](https://github.com/diglactic/laravel-breadcrumbs) for full setup instructions.
 
-```bash
-composer test
-```
+## Bundled Packages
 
-You may also boot the included workbench application to test your package end-to-end:
+| Package | Constraint | Description |
+| ------- | ---------- | ----------- |
+| [illuminate/support](https://github.com/illuminate/support) | `^13.0` | Laravel support helpers and collections. |
+| [robertboes/inertia-breadcrumbs](https://github.com/robertboes/inertia-breadcrumbs) | `^1.0` | Share Laravel breadcrumbs with Inertia.js. |
+| [saloonphp/laravel-plugin](https://github.com/saloonphp/laravel-plugin) | `^5.0` | Laravel integration for Saloon HTTP clients. |
+| [saloonphp/saloon](https://github.com/saloonphp/saloon) | `^4.0` | Build beautiful, testable API integrations. |
+| [spatie/laravel-activitylog](https://github.com/spatie/laravel-activitylog) | `^5.0` | Log user activity and Eloquent model changes. |
+| [spatie/laravel-data](https://github.com/spatie/laravel-data) | `^4.21` | Create rich data objects. |
+| [spatie/laravel-medialibrary](https://github.com/spatie/laravel-medialibrary) | `^11.0` | Associate files with Eloquent models. |
+| [spatie/laravel-model-states](https://github.com/spatie/laravel-model-states) | `^2.13` | State machine support for Eloquent models. |
+| [spatie/laravel-permission](https://github.com/spatie/laravel-permission) | `^8.0` | Associate users with roles and permissions. |
+| [spatie/laravel-query-builder](https://github.com/spatie/laravel-query-builder) | `^7.2` | Build Eloquent queries from API requests. |
+| [spatie/laravel-sluggable](https://github.com/spatie/laravel-sluggable) | `^4.0` | Generate slugs for Eloquent models. |
+| [spatie/laravel-typescript-transformer](https://github.com/spatie/laravel-typescript-transformer) | `^3.0` | Transform PHP types to TypeScript. |
+| [diglactic/laravel-breadcrumbs](https://github.com/diglactic/laravel-breadcrumbs) | `^10.1` | A simple breadcrumb package for Laravel. |
 
-```bash
-composer serve
-```
+## Package-Specific Setup
 
-The workbench app will be available at `http://localhost:8000`.
+This umbrella package does not ship its own configuration, migrations, routes, views, or assets, so there is nothing to publish from it.
 
-## Non-Interactive Configuration
+Some bundled packages require their own post-install steps (publishing configuration or migrations, running migrations, registering middleware, and so on). Refer to each package's upstream documentation for setup instructions:
 
-The configuration script supports non-interactive mode for CI or scripted setups. Pass `--no-interaction` along with any metadata options you'd like to prefill:
+- [Inertia Breadcrumbs](https://github.com/robertboes/inertia-breadcrumbs)
+- [Saloon Laravel Plugin](https://github.com/saloonphp/laravel-plugin)
+- [Spatie Laravel Activitylog](https://spatie.be/docs/laravel-activitylog)
+- [Spatie Laravel Data](https://spatie.be/docs/laravel-data)
+- [Spatie Laravel Medialibrary](https://spatie.be/docs/laravel-medialibrary)
+- [Spatie Laravel Model States](https://spatie.be/docs/laravel-model-states)
+- [Spatie Laravel Permission](https://spatie.be/docs/laravel-permission)
+- [Spatie Laravel Query Builder](https://spatie.be/docs/laravel-query-builder)
+- [Spatie Laravel Sluggable](https://spatie.be/docs/laravel-sluggable)
+- [Spatie Laravel TypeScript Transformer](https://spatie.be/docs/laravel-typescript-transformer)
+- [Diglactic Laravel Breadcrumbs](https://github.com/diglactic/laravel-breadcrumbs)
 
-```bash
-php configure.php --no-interaction --config --routes
-```
+## License
 
-Non-interactive mode also activates automatically when the `COMPOSER_NO_INTERACTION=1` environment variable is set, when an AI agent is detected, or when standard input is not an interactive terminal.
-
-Omitting feature flags includes every package feature; passing specific flags includes only those features. Tools work the same way: omitting tool flags such as `--dependabot` or `--changelog` includes every tool, while passing specific flags includes only those tools.
-
-Since the default package description is empty, passing `--package-description` is recommended so the generated `composer.json` is ready to publish.
-
-Non-interactive runs print a single line of JSON describing the result, including the resolved metadata, selected features and tools, and any manual follow-up steps. Invalid metadata options fail with a JSON error before any files are changed.
-
-During configuration, `README_PACKAGE.md` and `AGENTS_PACKAGE.md` are customized and moved to `README.md` and `AGENTS.md`, replacing the skeleton files. The script also links `CLAUDE.md` to `AGENTS.md` and `.claude` to `.agents` so both agent formats share the same guidance.
-
-## After Setup
-
-A few GitHub settings need your attention after creating your package repository:
-
-- Review Dependabot pull requests before merging — this skeleton does not include an automatic merge workflow.
-- Create release-note labels: `breaking`, `enhancement`, `bug`, `documentation`, `dependencies`, `maintenance`, `skip-changelog`, and `duplicate`.
-- Review branch protection for `main` — changelog automation requires GitHub Actions to commit to `CHANGELOG.md` after a release.
-
-No additional repository secrets are required; the included workflows use GitHub's built-in `GITHUB_TOKEN`.
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

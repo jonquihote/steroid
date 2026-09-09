@@ -1,114 +1,39 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "vendor-name/skeleton",
-    "description": "A Laravel package skeleton.",
+    "name": ":vendor_slug/:package_slug",
+    "description": "An umbrella/meta-package that bundles a curated set of Laravel dependencies.",
+    "type": "metapackage",
     "keywords": [
-        "vendor-name",
         "laravel",
-        "skeleton"
+        "meta-package",
+        "umbrella"
     ],
-    "homepage": "https://github.com/vendor-name/skeleton",
+    "homepage": "https://github.com/:vendor_slug/:package_slug",
     "license": "MIT",
     "authors": [
         {
-            "name": "Author Name",
-            "email": "author@example.com",
+            "name": ":author_name",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.3",
-        "illuminate/support": "^12.0||^13.0"
-    },
-    "require-dev": {
-        "larastan/larastan": "^3.9",
-        "laravel/agent-detector": "^2.0",
-        "laravel/chisel": "^0.1",
-        "laravel/pint": "^1.29",
-        "laravel/prompts": "^0.3",
-        "laravel/pao": "^1.0",
-        "orchestra/testbench": "^10.0||^11.0",
-        "pestphp/pest": "^4.6||^5.0",
-        "pestphp/pest-plugin-laravel": "^4.1||^5.0",
-        "pestphp/pest-plugin-type-coverage": "^4.0||^5.0",
-        "phpstan/extension-installer": "^1.4"
-    },
-    "autoload": {
-        "psr-4": {
-            "VendorName\\Skeleton\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
-            "Workbench\\App\\": "workbench/app/",
-            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
-            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
-        }
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "@php configure.php"
-        ],
-        "post-update-cmd": [
-            "@php configure.php"
-        ],
-        "post-autoload-dump": [
-            "@clear",
-            "@prepare"
-        ],
-        "prepare": [
-            "@php vendor/bin/testbench package:discover --ansi"
-        ],
-        "build": [
-            "@php vendor/bin/testbench workbench:build --ansi"
-        ],
-        "serve": [
-            "Composer\\Config::disableProcessTimeout",
-            "@build",
-            "@php vendor/bin/testbench serve --ansi"
-        ],
-        "lint": [
-            "vendor/bin/pint --parallel"
-        ],
-        "lint:check": [
-            "vendor/bin/pint --parallel --test"
-        ],
-        "analyse": [
-            "vendor/bin/phpstan analyse"
-        ],
-        "test:types": [
-            "vendor/bin/pest --type-coverage --min=100"
-        ],
-        "test:unit": [
-            "vendor/bin/pest --parallel"
-        ],
-        "test": [
-            "@analyse",
-            "@lint:check",
-            "@test:types",
-            "@test:unit"
-        ],
-        "clear": [
-            "@php vendor/bin/testbench package:purge-skeleton --ansi"
-        ]
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
-            }
-        }
+        "php": "^8.5",
+        "illuminate/support": "^13.0",
+        "robertboes/inertia-breadcrumbs": "^1.0",
+        "saloonphp/laravel-plugin": "^5.0",
+        "saloonphp/saloon": "^4.0",
+        "spatie/laravel-activitylog": "^5.0",
+        "spatie/laravel-data": "^4.21",
+        "spatie/laravel-medialibrary": "^11.0",
+        "spatie/laravel-model-states": "^2.13",
+        "spatie/laravel-permission": "^8.0",
+        "spatie/laravel-query-builder": "^7.2",
+        "spatie/laravel-sluggable": "^4.0",
+        "spatie/laravel-typescript-transformer": "^3.0",
+        "diglactic/laravel-breadcrumbs": "^10.1"
     },
     "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true,
-            "phpstan/extension-installer": true
-        }
+        "sort-packages": true
     },
     "minimum-stability": "stable",
     "prefer-stable": true
