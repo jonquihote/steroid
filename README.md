@@ -1,4 +1,4 @@
-# :package_name
+# jonquihote/steroid
 
 A Composer library that bundles a curated set of Laravel dependencies into a single requirement.
 
@@ -14,7 +14,7 @@ This package contains no code of its own. Requiring it pulls in a consistent set
 Install via Composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require jonquihote/steroid
 ```
 
 All bundled packages support [Laravel's package auto-discovery](https://laravel.com/docs/packages#package-discovery); their service providers will be registered automatically.

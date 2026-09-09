@@ -1,6 +1,6 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": ":vendor_slug/:package_slug",
+    "name": "jonquihote/steroid",
     "description": "A Laravel umbrella library that bundles a curated set of dependencies.",
     "type": "library",
     "keywords": [
@@ -8,11 +8,11 @@
         "meta-package",
         "umbrella"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/jonquihote/steroid",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
+            "name": "Joni Chandra",
             "role": "Developer"
         }
     ],
