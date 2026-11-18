@@ -28,7 +28,7 @@
         "spatie/laravel-model-states": "^2.13",
         "spatie/laravel-permission": "^8.0",
         "spatie/laravel-query-builder": "^7.2",
-        "spatie/laravel-sluggable": "^4.0",
+        "spatie/laravel-sluggable": "^4.0 || ^6.0",
         "spatie/laravel-typescript-transformer": "^3.0",
         "diglactic/laravel-breadcrumbs": "^10.1"
     },
